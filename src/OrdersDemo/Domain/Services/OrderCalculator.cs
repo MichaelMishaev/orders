@@ -3,6 +3,14 @@ using System.Reflection;
 
 namespace OrdersDemo.Domain.Services;
 
+    class Test
+{
+    public Test()
+    {
+        var order = OrderCalculator.Instance;
+    }
+}
+
 public class OrderCalculator : IOrderCalculator
 {
     private static readonly Lazy<List<IPriceCalculator>> _list = new(FindAllCalculators, LazyThreadSafetyMode.ExecutionAndPublication);

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿#pragma warning disable IDE0051 // Remove unused private members
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using OrdersDemo.Api.Handlers;
@@ -20,7 +21,7 @@ builder.Logging.AddSerilog(logger);
 
 builder.Services.Configure<MailConfig>(builder.Configuration.GetSection(MailConfig.CONFIG_NAME));
 
-var connectionString = builder.Configuration.GetConnectionString("OrderDbConnection");
+var connectionString = builder.Configuration.GetConnectionString("MainDbConnection");
 builder.Services.AddDbContext<OrderDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddScoped<OrderDbInitializer>();
 
@@ -76,3 +77,5 @@ app.MapControllers();
 await OrderDbInitializer.SeedAsync(app.Services);
 
 app.Run();
+
+#pragma warning restore IDE0051 // Remove unused private members

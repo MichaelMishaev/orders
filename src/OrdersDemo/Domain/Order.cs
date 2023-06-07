@@ -36,6 +36,10 @@ public class Order
 
     public Order(IOrderCalculator orderCalculator, IDateTime dateTime, string orderNo, Customer customer, Address address)
     {
+        if (string.IsNullOrEmpty(orderNo))
+        {
+            throw new ArgumentNullException();
+        }
         Guard.Against.NullOrEmpty(orderNo);
         Guard.Against.Null(orderCalculator);
         Guard.Against.Null(dateTime);
